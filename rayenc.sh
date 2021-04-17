@@ -1,0 +1,21 @@
+#!/bin/bash
+echo "Choose an option: "
+echo "1 : Encrypt"
+echo "2 : Dycrypt"
+read -p "Option: " opt
+read -sp "Password: " pass
+
+if (($opt == 1))
+then
+
+	c=1
+	for f in *; do sed -i "1i ""$f""" "$f";mv "$f" $c; c=$(($c+1));done
+	for f in *; do gpg -c --pinentry-mode loopback -o "$f".ray --passphrase "$pass" "$f";rm "$f"; done
+fi
+
+
+if ((opt == 2))
+then
+	for f in *; do gpg -d --pinentry-mode loopback -o "$f".x --passphrase "$pass" "$f"; rm "$f";done
+	for f in *; do n=$(head -n 1 "$f");mv "$f" "$n"; sed -i "1d" "$n"; done
+fi
