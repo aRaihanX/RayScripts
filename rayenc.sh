@@ -1,7 +1,8 @@
 #!/bin/bash
-echo "Choose an option: "
+echo "Select an option: "
+echo "#################"
 echo "1 : Encrypt"
-echo "2 : Dycrypt"
+echo "2 : Decrypt"
 read -p "Option: " opt
 read -sp "Password: " pass
 
